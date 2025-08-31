@@ -1,205 +1,86 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-  <meta charset="utf-8">
-  <title>RetryIX AGI Inc — Semantic Memory & Zero-Copy Intelligence</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0f17">
-  <meta name="description" content="RetryIX AGI：以零拷貝與語義記憶體為核心的次世代智能體系。">
-
-  <!-- Canonical & Social Cards -->
-  <link rel="canonical" href="https://retryixagi.com/">
-  <meta property="og:title" content="RetryIX AGI Inc">
-  <meta property="og:description" content="以語義記憶體取代暴力浮點運算的 AGI 架構。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://retryixagi.com/">
-  <meta property="og:image" content="https://retryixagi.com/assets/hero.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="RetryIX AGI — Semantic Memory & Zero-Copy">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="RetryIX AGI Inc">
-  <meta name="twitter:description" content="以語義記憶體取代暴力浮點運算的 AGI 架構。">
-  <meta name="twitter:image" content="https://retryixagi.com/assets/hero.png">
-  <link rel="icon" href="icon48.png" type="image/png">
-<link rel="apple-touch-icon" href="icon48.png">
-<meta name="msapplication-TileImage" content="icon48.png">
-
+  <meta charset="UTF-8">
+  <title>RetryIX Memory StackKit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root{
-      --bg:#0b0f17; --card:#121826; --ink:#e6edf3; --muted:#9fb0c3; --pri:#7cc7ff; --acc:#14f195;
-      --edge:#1c2a3b; --link:#8be9fd; --warn:#ffcc00;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans TC",sans-serif}
-    img{image-rendering:auto;max-width:100%;height:auto}
-    a{color:var(--link);text-decoration:none} a:hover{opacity:.9;text-decoration:underline}
-    .wrap{max-width:1100px;margin:auto;padding:24px}
-    .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 0}
-    .brand{font-weight:700;letter-spacing:.4px}
-    .pill{padding:6px 12px;border:1px solid var(--edge);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;margin:28px 0}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--edge);border-radius:16px;padding:22px}
-    .badge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--edge);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:12px}
-    h1{font-size:40px;line-height:1.15;margin:.6rem 0} h2{font-size:22px;margin:0 0 8px}
-    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
-    .kpi{padding:14px;border:1px dashed var(--edge);border-radius:12px;background:#0e1522}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#b8c7d9}
-    .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:24px;padding-top:16px;border-top:1px solid var(--edge);color:var(--muted)}
-    .tag{display:inline-block;padding:2px 8px;border:1px solid var(--edge);border-radius:999px;color:var(--muted);font-size:12px;margin-right:6px}
-    .cta{display:inline-flex;gap:10px;align-items:center;background:var(--acc);color:#06110c;border:none;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
-    .cta.ghost{background:transparent;color:var(--pri);border:1px solid var(--edge)}
-    .list{padding-left:18px;margin:8px 0}
-    .list li{margin:6px 0}
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .kpis{grid-template-columns:1fr 1fr}
-    }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; }
+    header { background:#222; color:#fff; padding:20px; text-align:center; position:relative; }
+    .hero { padding:40px; text-align:center; }
+    .card { background:#fff; margin:20px auto; padding:20px; border-radius:8px; max-width:800px; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+    h1, h2 { margin:0 0 16px; }
+    p { line-height:1.6; }
+    .mono { font-family: monospace; }
+    footer { background:#222; color:#fff; text-align:center; padding:10px; margin-top:40px; }
+    #lang { position:absolute; top:20px; right:20px; }
+    a { color:#0066cc; text-decoration:none; }
+    a:hover { text-decoration:underline; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <nav class="nav">
-      <div class="brand">RetryIX AGI Inc</div>
-      <div style="display:flex;gap:10px">
-        <button class="pill" id="lang">EN</button>
-        <a class="pill" href="https://github.com/Retryixagi" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </nav>
+  <header>
+    <h1 data-zh="RetryIX 記憶堆疊引擎" data-en="RetryIX Memory StackKit">RetryIX 記憶堆疊引擎</h1>
+    <button id="lang">EN/中文</button>
+  </header>
 
-    <!-- Hero Banner -->
-    <img src="assets/hero.png" alt="RetryIX AGI — Semantic Memory & Zero-Copy"
-         style="width:100%;border-radius:16px;display:block;margin:10px 0 22px 0;">
+  <section class="hero">
+    <h2 data-zh="AI 訓練與推理的新革命" data-en="A New Revolution in AI Training & Inference">AI 訓練與推理的新革命</h2>
+    <p data-zh="我們開發了一套基於 4096B 對齊堆疊策略的軟體定義 AI 加速器，能在低功耗環境下達到媲美 A100 的訓練效能。" 
+       data-en="We have developed a software-defined AI accelerator based on 4096B-aligned stacking strategies, achieving near A100-level training performance under low power.">
+      我們開發了一套基於 4096B 對齊堆疊策略的軟體定義 AI 加速器，能在低功耗環境下達到媲美 A100 的訓練效能。
+    </p>
+  </section>
 
-    <section class="hero">
-      <div class="card">
-        <div class="badge">⚙️ Semantic • Zero-Copy • OpenCL 2.0 SVM</div>
-        <h1 data-zh="以語義記憶體取代暴力浮點 — 新一代 AGI 核心"
-            data-en="Replace Brute-Force FLOPs with Semantic Memory — The Next AGI Core">
-          以語義記憶體取代暴力浮點 — 新一代 AGI 核心
-        </h1>
-        <p class="mono" data-zh="我們用零拷貝與共享虛擬記憶體，構建可自我修復的語義閉環智能。"
-           data-en="Zero-copy + SVM to build a self-repairing semantic closed-loop intelligence.">
-          我們用零拷貝與共享虛擬記憶體，構建可自我修復的語義閉環智能。
-        </p>
-        <div class="kpis">
-          <div class="kpi"><b>Zero-Copy</b><br><span class="mono">Sub-200µs pipeline</span></div>
-          <div class="kpi"><b>Memory RAID</b><br><span class="mono">11.7+ GB/s eff.</span></div>
-          <div class="kpi"><b>GGUF Bridge</b><br><span class="mono">Cognitive repair loop</span></div>
-        </div>
-        <div style="display:flex;gap:10px;margin-top:16px">
-          <a class="cta" href="#projects" data-zh="查看專案" data-en="View Projects">查看專案</a>
-          <a class="cta ghost" href="#contact" data-zh="聯絡我們" data-en="Contact">聯絡我們</a>
-        </div>
-      </div>
+  <section class="card">
+    <h2 data-zh="合作與應用" data-en="Collaboration & Applications">合作與應用</h2>
+    <p data-zh="此技術可大幅降低 AI 訓練系統的成本，特別適合中小企業、研究單位與高校應用。我們誠摯邀請產學研夥伴共同參與。" 
+       data-en="This technology drastically reduces the cost of AI training systems, making it ideal for SMEs, research institutes, and universities. We sincerely invite academic and industry partners to collaborate.">
+      此技術可大幅降低 AI 訓練系統的成本，特別適合中小企業、研究單位與高校應用。我們誠摯邀請產學研夥伴共同參與。
+    </p>
+  </section>
 
-      <div class="card">
-        <h2 data-zh="近期里程碑" data-en="Recent Milestones">近期里程碑</h2>
-        <ul class="list">
-          <li data-zh="RetryIX-OpenCL2.0-512B — 發佈 README 與授權策略"
-              data-en="RetryIX-OpenCL2.0-512B — README & licensing published">
-            RetryIX-OpenCL2.0-512B — 發佈 README 與授權策略
-          </li>
-           <li data-zh="RetryIX 2025 OpenCL2.0 全新SDK — 發佈 README 與開源策略"
-              data-en="RetryIX 2025 OpenCL2.0 All new SDK — README & licensing published">
-            RetryIX 2025_OpenCL2.0 全新SDK — 發佈 README 與開源策略
-          </li>
-          <li data-zh="Memory RAID 1.0 — 發佈 README 與授權策略"
-              data-en="Memory RAID 1.0 — README & licensing published">
-            Memory RAID 1.0 — 發佈 README 與授權策略
-          </li>
-          <li data-zh="GGUF 認知橋接器 v3.0 — 零拷貝加速"
-              data-en="GGUF Cognitive Bridge v3.0 — Zero-copy acceleration">
-            GGUF 認知橋接器 v3.0 — 零拷貝加速
-          </li>
-          <li data-zh="六層語義閉環模型 — 開源（個人/學術免費、商業付費）"
-              data-en="Six-Layer Semantic Loop — Open-sourced (non-commercial free)">
-            六層語義閉環模型 — 開源（個人/學術免費、商業付費）
-          </li>
-        </ul>
-        <div style="margin-top:10px">
-           <span class="tag">RetryIX-OpenCL2.0-512B</span>
-           <span class="tag">RetryIX 2025_OpenCL2.0 全新SDK</span>
-          <span class="tag">OpenCL 2.0 SVM</span>
-          <span class="tag">Zero-Copy</span>
-          <span class="tag">Semantic HFT</span>
-          <span class="tag">GPU/CPU Hybrid</span>
-        </div>
-      </div>
-    </section>
+  <!-- ✅ 新增：技術里程碑更新與倉庫引導 -->
+  <section class="card">
+    <h2 data-zh="最新技術里程碑" data-en="Latest Milestones">最新技術里程碑</h2>
+    <ul>
+      <li data-zh="✅ 完成 4MB 512B × 8 對齊編碼模塊" data-en="✅ Completed 4MB 512B × 8 aligned encoding module">✅ 完成 4MB 512B × 8 對齊編碼模塊</li>
+      <li data-zh="✅ 完成 8MB 64B × 64 疊加編碼模塊 (4096B 對齊)" data-en="✅ Completed 8MB 64B × 64 stacked encoding module (4096B aligned)">✅ 完成 8MB 64B × 64 疊加編碼模塊 (4096B 對齊)</li>
+      <li data-zh="✅ 穩定通過 100 輪壓力測試 (一致性驗證成功)" data-en="✅ Passed 100-round stress tests with consistency validation">✅ 穩定通過 100 輪壓力測試 (一致性驗證成功)</li>
+    </ul>
+    <p data-zh="更多細節與原始碼可參考我們的 GitHub 倉庫：" 
+       data-en="For more details and source code, please refer to our GitHub repositories:">
+       更多細節與原始碼可參考我們的 GitHub 倉庫：
+    </p>
+    <ul>
+      <li><a href="https://github.com/Retryixagi/RetryIX-OpenCL2.0-51" target="_blank">RetryIX-OpenCL2.0-51 通用 SDK</a></li>
+      <li><a href="https://github.com/Retryixagi/2025_OpenCL2.0" target="_blank">2025_OpenCL2.0 安裝套件</a></li>
+    </ul>
+  </section>
 
-    <section id="projects" class="grid">
-      <div class="card">
-        <h2>Memory RAID Engine</h2>
-        <p class="mono" data-zh="以 RAID 思維重構記憶體佈局，達成零拷貝與帶寬聚合。"
-           data-en="RAID-inspired memory layout for zero-copy & bandwidth aggregation.">
-          以 RAID 思維重構記憶體佈局，達成零拷貝與帶寬聚合。
-        </p>
-        <a href="https://github.com/ixu2486/memory_raid_engine" target="_blank" rel="noopener">GitHub →</a>
-      </div>
+  <!-- ✅ 地緣政治來源聲明 -->
+  <section class="card">
+    <h2 data-zh="團隊地點聲明" data-en="Origin Disclaimer">團隊地點聲明</h2>
+    <p class="mono" 
+       data-zh="本專案由台灣 RetryIX 技術團隊開發與維運，所有程式碼皆在台灣本地撰寫、測試與部署，與中國（中國大陸）無關。" 
+       data-en="This project is developed and maintained entirely by RetryIX in Taiwan. All code is written, tested, and deployed from Taiwan, with no affiliation to Mainland China.">
+       本專案由台灣 RetryIX 技術團隊開發與維運，所有程式碼皆在台灣本地撰寫、測試與部署，與中國（中國大陸）無關。
+    </p>
+  </section>
 
-      <div class="card">
-        <h2>GGUF Cognitive Bridge</h2>
-        <p class="mono" data-zh="離線 GGUF 與語義修復引擎耦合，提供穩定的認知殘差回饋。"
-           data-en="Couples offline GGUF with semantic repair engine for stable cognition.">
-          離線 GGUF 與語義修復引擎耦合，提供穩定的認知殘差回饋。
-        </p>
-        <a href="https://github.com/ixu2486" target="_blank" rel="noopener">Repository Index →</a>
-      </div>
-
-      <div class="card">
-        <h2>Semantic-HFT-ASI</h2>
-        <p class="mono" data-zh="十層語義場 × 低延遲對沖引擎，<200ms 閉環。"
-           data-en="10-layer semantic field × low-latency hedging engine, &lt;200ms loop.">
-          十層語義場 × 低延遲對沖引擎，&lt;200ms 閉環。
-        </p>
-        <a href="https://github.com/ixu2486" target="_blank" rel="noopener">Docs →</a>
-      </div>
-    </section>
-
-    
-<section class="card" style="margin-top:16px">
-  <h2 data-zh="創業合作與投資者資訊" data-en="Partnership & Investor Info">創業合作與投資者資訊</h2>
-  <p class="mono" data-zh="RetryIX AGI 歡迎各界對於語義運算與高效能 AI 系統有興趣的合作夥伴與投資者，共同推動下一代 AGI 架構。" data-en="RetryIX AGI welcomes partnerships and investors interested in semantic computing and high-efficiency AI systems.">
-    RetryIX AGI 歡迎各界對於語義運算與高效能 AI 系統有興趣的合作夥伴與投資者，共同推動下一代 AGI 架構。
-  </p>
-  <ul class="list">
-    <li data-zh="資金合作模式與技術授權" data-en="Funding collaboration and technical licensing">資金合作模式與技術授權</li>
-    <li data-zh="戰略投資與創業合作夥伴招募" data-en="Strategic investment & startup partnership recruitment">戰略投資與創業合作夥伴招募</li>
-    <li data-zh="聯絡窗口：ixu@retryixagi.com" data-en="Contact: ixu@retryixagi.com">聯絡窗口：ixu@retryixagi.com</li>
-  </ul>
-</section>
-
-
-    <section id="contact" class="card" style="margin-top:16px">
-      <h2 data-zh="聯絡" data-en="Contact">聯絡</h2>
-      <p class="mono">✉️ <a href="mailto:ixu@retryix.com">ixu@retryix.com</a></p>
-      <p class="mono">🌐 <a href="https://retryixagi.com" target="_blank" rel="noopener">retryixagi.com</a></p>
-    </section>
-
-    <footer class="foot">
-      <div>© <span id="y"></span> RetryIX AGI Inc</div>
-      <div class="mono" data-zh="以語義記憶體驅動的下一代智能"
-           data-en="Next-gen intelligence powered by semantic memory">
-        以語義記憢體驅動的下一代智能
-      </div>
-    </footer>
-  </div>
+  <footer>
+    <p>&copy; 2025 RetryIX AGI Inc.</p>
+  </footer>
 
   <script>
-    // 年份 & 雙語切換
-    document.getElementById('y').textContent = new Date().getFullYear();
     const btn = document.getElementById('lang');
-    let en = false;
-    const swap = () => {
-      document.querySelectorAll('[data-zh]').forEach(el=>{
-        el.textContent = en ? el.dataset.zh : el.dataset.en;
+    let zh = true;
+    btn.onclick = () => {
+      zh = !zh;
+      document.querySelectorAll('[data-zh]').forEach(el => {
+        el.innerText = zh ? el.getAttribute('data-zh') : el.getAttribute('data-en');
       });
-      btn.textContent = en ? 'EN' : '中';
-      en = !en;
     };
-    btn.addEventListener('click', swap);
   </script>
 </body>
 </html>
