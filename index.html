@@ -1,205 +1,449 @@
-<!doctype html>
+from pathlib import Path
+
+html = r'''<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
-  <title>RetryIX AGI Inc — Semantic Memory & Zero-Copy Intelligence</title>
+  <title>RetryIX AGI Inc — Memory-First Evidence Gates</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0f17">
-  <meta name="description" content="RetryIX AGI：以零拷貝與語義記憶體為核心的次世代智能體系。">
-
-  <!-- Canonical & Social Cards -->
+  <meta name="theme-color" content="#071018">
+  <meta name="description" content="RetryIX AGI builds memory-first evidence gates, CPU verifier architecture, and full-phase black-box algorithm audit for trustworthy AI and scientific computing.">
   <link rel="canonical" href="https://retryixagi.com/">
-  <meta property="og:title" content="RetryIX AGI Inc">
-  <meta property="og:description" content="以語義記憶體取代暴力浮點運算的 AGI 架構。">
+
+  <meta property="og:title" content="RetryIX AGI Inc — Memory-First Evidence Gates">
+  <meta property="og:description" content="Verification-first architecture for AI, scientific data, and black-box algorithm audit.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://retryixagi.com/">
   <meta property="og:image" content="https://retryixagi.com/assets/hero.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="RetryIX AGI — Semantic Memory & Zero-Copy">
+  <meta property="og:image:alt" content="RetryIX AGI — Memory-First Evidence Gates">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="RetryIX AGI Inc">
-  <meta name="twitter:description" content="以語義記憶體取代暴力浮點運算的 AGI 架構。">
+  <meta name="twitter:title" content="RetryIX AGI Inc — Memory-First Evidence Gates">
+  <meta name="twitter:description" content="Exact evidence gates before commit. CPU verifier. Memory-side exact compute. Full-phase probe audit.">
   <meta name="twitter:image" content="https://retryixagi.com/assets/hero.png">
+
   <link rel="icon" href="icon48.png" type="image/png">
-<link rel="apple-touch-icon" href="icon48.png">
-<meta name="msapplication-TileImage" content="icon48.png">
+  <link rel="apple-touch-icon" href="icon48.png">
+  <meta name="msapplication-TileImage" content="icon48.png">
 
   <style>
     :root{
-      --bg:#0b0f17; --card:#121826; --ink:#e6edf3; --muted:#9fb0c3; --pri:#7cc7ff; --acc:#14f195;
-      --edge:#1c2a3b; --link:#8be9fd; --warn:#ffcc00;
+      --bg:#071018;
+      --bg2:#0a1421;
+      --card:#101b2b;
+      --card2:#0d1725;
+      --ink:#e8f0f7;
+      --muted:#a9b8c8;
+      --soft:#7890a6;
+      --line:#223247;
+      --line2:#31455f;
+      --pri:#7cc7ff;
+      --acc:#14f195;
+      --warn:#ffd166;
+      --danger:#ff6b6b;
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --radius:20px;
+      --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+      --sans:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans TC","Noto Sans",sans-serif;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans TC",sans-serif}
-    img{image-rendering:auto;max-width:100%;height:auto}
-    a{color:var(--link);text-decoration:none} a:hover{opacity:.9;text-decoration:underline}
-    .wrap{max-width:1100px;margin:auto;padding:24px}
-    .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 0}
-    .brand{font-weight:700;letter-spacing:.4px}
-    .pill{padding:6px 12px;border:1px solid var(--edge);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;margin:28px 0}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--edge);border-radius:16px;padding:22px}
-    .badge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--edge);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:12px}
-    h1{font-size:40px;line-height:1.15;margin:.6rem 0} h2{font-size:22px;margin:0 0 8px}
-    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
-    .kpi{padding:14px;border:1px dashed var(--edge);border-radius:12px;background:#0e1522}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#b8c7d9}
-    .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:24px;padding-top:16px;border-top:1px solid var(--edge);color:var(--muted)}
-    .tag{display:inline-block;padding:2px 8px;border:1px solid var(--edge);border-radius:999px;color:var(--muted);font-size:12px;margin-right:6px}
-    .cta{display:inline-flex;gap:10px;align-items:center;background:var(--acc);color:#06110c;border:none;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
-    .cta.ghost{background:transparent;color:var(--pri);border:1px solid var(--edge)}
-    .list{padding-left:18px;margin:8px 0}
-    .list li{margin:6px 0}
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .kpis{grid-template-columns:1fr 1fr}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(124,199,255,.20), transparent 32%),
+        radial-gradient(circle at 82% 10%, rgba(20,241,149,.14), transparent 30%),
+        linear-gradient(180deg,var(--bg),var(--bg2) 56%,#070b12);
+      color:var(--ink);
+      font:16px/1.65 var(--sans);
+    }
+    a{color:var(--pri);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1180px;margin:auto;padding:22px}
+    .nav{
+      position:sticky;top:0;z-index:20;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:12px 0 14px;
+      backdrop-filter:blur(14px);
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+    .mark{
+      width:32px;height:32px;border-radius:10px;
+      background:linear-gradient(135deg,var(--pri),var(--acc));
+      box-shadow:0 0 30px rgba(20,241,149,.18);
+    }
+    .navlinks{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border:1px solid var(--line);border-radius:999px;
+      background:rgba(255,255,255,.025);color:var(--ink);
+      cursor:pointer;font:inherit;font-size:14px;
+    }
+    .pill:hover{border-color:var(--line2);text-decoration:none}
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch;margin:18px 0 26px}
+    .panel{
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.022));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+      overflow:hidden;
+    }
+    .hero-main{position:relative;min-height:520px}
+    .hero-main:after{
+      content:"";
+      position:absolute;right:-120px;bottom:-140px;width:430px;height:430px;border-radius:50%;
+      background:radial-gradient(circle,rgba(20,241,149,.16),transparent 65%);
+      pointer-events:none;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 11px;border:1px solid var(--line2);border-radius:999px;
+      color:var(--muted);background:rgba(7,16,24,.65);font:13px var(--mono);
+    }
+    h1{font-size:clamp(38px,7vw,72px);line-height:1.02;margin:22px 0 18px;letter-spacing:-1.8px}
+    h2{font-size:clamp(24px,3vw,34px);line-height:1.15;margin:0 0 12px;letter-spacing:-.5px}
+    h3{font-size:18px;margin:0 0 8px}
+    p{margin:0 0 14px}
+    .lead{font-size:20px;color:#c9d7e6;max-width:780px}
+    .mono{font-family:var(--mono);color:#bdd0e2}
+    .muted{color:var(--muted)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;position:relative;z-index:1}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 15px;border-radius:14px;border:1px solid var(--line2);
+      background:rgba(255,255,255,.035);color:var(--ink);font-weight:750;
+    }
+    .btn.primary{background:linear-gradient(135deg,var(--acc),#7cffd0);color:#06110c;border:none}
+    .btn:hover{text-decoration:none;transform:translateY(-1px)}
+    .mini-grid{display:grid;grid-template-columns:1fr;gap:12px}
+    .metric{
+      padding:16px;border:1px solid var(--line);border-radius:16px;background:rgba(0,0,0,.16);
+    }
+    .metric b{font-size:24px;display:block;color:#fff}
+    .metric span{display:block;color:var(--muted);font-family:var(--mono);font-size:13px}
+    .strip{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 26px
+    }
+    .strip .metric{min-height:112px}
+    .section{margin:20px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:0 0 14px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.018));
+      border:1px solid var(--line);border-radius:18px;padding:20px;
+    }
+    .card.accent{border-color:rgba(20,241,149,.35)}
+    .card.warn{border-color:rgba(255,209,102,.32)}
+    .eyebrow{color:var(--acc);font:12px var(--mono);letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px}
+    .list{padding-left:18px;margin:10px 0 0}
+    .list li{margin:7px 0;color:#cbd7e4}
+    .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .step{position:relative;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(0,0,0,.14)}
+    .step:before{
+      content:attr(data-step);display:inline-flex;align-items:center;justify-content:center;
+      width:30px;height:30px;border-radius:50%;background:rgba(124,199,255,.16);
+      border:1px solid rgba(124,199,255,.35);font-family:var(--mono);margin-bottom:12px;
+    }
+    .quote{
+      border-left:3px solid var(--acc);
+      padding:10px 0 10px 16px;color:#d9e7f5;font-size:19px;
+    }
+    .codebox{
+      background:#08111d;border:1px solid var(--line);border-radius:16px;padding:16px;
+      overflow:auto;font-family:var(--mono);font-size:13px;color:#c6d6e7;
+    }
+    .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+    .tag{
+      border:1px solid var(--line);border-radius:999px;padding:4px 9px;
+      color:var(--muted);font-size:12px;font-family:var(--mono);background:rgba(255,255,255,.025);
+    }
+    .footer{
+      display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+      border-top:1px solid var(--line);padding:22px 0 8px;margin-top:26px;color:var(--muted)
+    }
+    [data-lang-en]{}
+
+    @media (max-width:920px){
+      .hero,.grid-2,.grid-3,.timeline{grid-template-columns:1fr}
+      .strip{grid-template-columns:1fr 1fr}
+      .hero-main{min-height:auto}
+      .nav{position:static}
+    }
+    @media (max-width:560px){
+      .wrap{padding:14px}
+      .panel{padding:20px}
+      .strip{grid-template-columns:1fr}
+      .nav{align-items:flex-start}
+      .navlinks{justify-content:flex-start}
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <nav class="nav">
-      <div class="brand">RetryIX AGI Inc</div>
-      <div style="display:flex;gap:10px">
-        <button class="pill" id="lang">EN</button>
+      <a class="brand" href="#" aria-label="RetryIX AGI home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>RetryIX AGI Inc</span>
+      </a>
+      <div class="navlinks">
+        <a class="pill" href="#architecture" data-zh="架構" data-en="Architecture">架構</a>
+        <a class="pill" href="#evidence" data-zh="證據" data-en="Evidence">證據</a>
+        <a class="pill" href="#audit" data-zh="審查" data-en="Audit">審查</a>
         <a class="pill" href="https://github.com/Retryixagi" target="_blank" rel="noopener">GitHub</a>
+        <button class="pill" id="lang" type="button">EN</button>
       </div>
     </nav>
 
-    <!-- Hero Banner -->
-    <img src="assets/hero.png" alt="RetryIX AGI — Semantic Memory & Zero-Copy"
-         style="width:100%;border-radius:16px;display:block;margin:10px 0 22px 0;">
-
-    <section class="hero">
-      <div class="card">
-        <div class="badge">⚙️ Semantic • Zero-Copy • OpenCL 2.0 SVM</div>
-        <h1 data-zh="以語義記憶體取代暴力浮點 — 新一代 AGI 核心"
-            data-en="Replace Brute-Force FLOPs with Semantic Memory — The Next AGI Core">
-          以語義記憶體取代暴力浮點 — 新一代 AGI 核心
+    <header class="hero">
+      <section class="panel hero-main">
+        <div class="badge" data-zh="CPU Verifier • Memory-First • Exact Evidence Gate" data-en="CPU Verifier • Memory-First • Exact Evidence Gate">
+          CPU Verifier • Memory-First • Exact Evidence Gate
+        </div>
+        <h1 data-zh="提交之前，先證明結果可以被相信。"
+            data-en="Before commit, prove the result can be trusted.">
+          提交之前，先證明結果可以被相信。
         </h1>
-        <p class="mono" data-zh="我們用零拷貝與共享虛擬記憶體，構建可自我修復的語義閉環智能。"
-           data-en="Zero-copy + SVM to build a self-repairing semantic closed-loop intelligence.">
-          我們用零拷貝與共享虛擬記憶體，構建可自我修復的語義閉環智能。
+        <p class="lead" data-zh="RetryIX 建立以記憶體為先的證據閘、CPU 驗證中心與全相位黑箱演算法審查，用於可信 AI、科學資料與不透明推薦系統。"
+           data-en="RetryIX builds memory-first evidence gates, CPU verifier architecture, and full-phase black-box algorithm audit for trustworthy AI, scientific data, and opaque recommendation systems.">
+          RetryIX 建立以記憶體為先的證據閘、CPU 驗證中心與全相位黑箱演算法審查，用於可信 AI、科學資料與不透明推薦系統。
         </p>
-        <div class="kpis">
-          <div class="kpi"><b>Zero-Copy</b><br><span class="mono">Sub-200µs pipeline</span></div>
-          <div class="kpi"><b>Memory RAID</b><br><span class="mono">11.7+ GB/s eff.</span></div>
-          <div class="kpi"><b>GGUF Bridge</b><br><span class="mono">Cognitive repair loop</span></div>
+        <p class="quote" data-zh="我們不把加速當成正確性。GPU 可以產生候選；結果是否能提交，必須經過可重現、可拒收、可審計的證據閘。"
+           data-en="We do not treat acceleration as correctness. GPU may generate candidates; commit must pass reproducible, rejectable, auditable evidence gates.">
+          我們不把加速當成正確性。GPU 可以產生候選；結果是否能提交，必須經過可重現、可拒收、可審計的證據閘。
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#evidence" data-zh="查看最新證據" data-en="View Latest Evidence">查看最新證據</a>
+          <a class="btn" href="#audit" data-zh="全相位審查方法" data-en="Full-Phase Audit Method">全相位審查方法</a>
+          <a class="btn" href="#contact" data-zh="合作聯絡" data-en="Contact">合作聯絡</a>
         </div>
-        <div style="display:flex;gap:10px;margin-top:16px">
-          <a class="cta" href="#projects" data-zh="查看專案" data-en="View Projects">查看專案</a>
-          <a class="cta ghost" href="#contact" data-zh="聯絡我們" data-en="Contact">聯絡我們</a>
-        </div>
-      </div>
+      </section>
 
-      <div class="card">
-        <h2 data-zh="近期里程碑" data-en="Recent Milestones">近期里程碑</h2>
-        <ul class="list">
-          <li data-zh="RetryIX-OpenCL2.0-512B — 發佈 README 與授權策略"
-              data-en="RetryIX-OpenCL2.0-512B — README & licensing published">
-            RetryIX-OpenCL2.0-512B — 發佈 README 與授權策略
-          </li>
-           <li data-zh="RetryIX 2025 OpenCL2.0 全新SDK — 發佈 README 與開源策略"
-              data-en="RetryIX 2025 OpenCL2.0 全新SDK — README & licensing published">
-            RetryIX 2025_OpenCL2.0 全新SDK — 發佈 README 與開源策略
-          </li>
-          <li data-zh="Memory RAID 1.0 — 發佈 README 與授權策略"
-              data-en="Memory RAID 1.0 — README & licensing published">
-            Memory RAID 1.0 — 發佈 README 與授權策略
-          </li>
-          <li data-zh="GGUF 認知橋接器 v3.0 — 零拷貝加速"
-              data-en="GGUF Cognitive Bridge v3.0 — Zero-copy acceleration">
-            GGUF 認知橋接器 v3.0 — 零拷貝加速
-          </li>
-          <li data-zh="六層語義閉環模型 — 開源（個人/學術免費、商業付費）"
-              data-en="Six-Layer Semantic Loop — Open-sourced (non-commercial free)">
-            六層語義閉環模型 — 開源（個人/學術免費、商業付費）
-          </li>
-        </ul>
-        <div style="margin-top:10px">
-           <span class="tag">RetryIX-OpenCL2.0-512B</span>
-           <span class="tag">RetryIX 2025_OpenCL2.0 全新SDK</span>
-          <span class="tag">OpenCL 2.0 SVM</span>
-          <span class="tag">Zero-Copy</span>
-          <span class="tag">Semantic HFT</span>
-          <span class="tag">GPU/CPU Hybrid</span>
+      <aside class="panel">
+        <div class="eyebrow" data-zh="Current Focus" data-en="Current Focus">Current Focus</div>
+        <div class="mini-grid">
+          <div class="metric">
+            <b data-zh="Exact Gate" data-en="Exact Gate">Exact Gate</b>
+            <span data-zh="整數交叉乘法；不靠 binary float commit" data-en="integer cross multiplication; no binary-float commit">整數交叉乘法；不靠 binary float commit</span>
+          </div>
+          <div class="metric">
+            <b data-zh="CPU Verifier" data-en="CPU Verifier">CPU Verifier</b>
+            <span data-zh="CPU 作為可信驗證與治理中心" data-en="CPU as trusted verification and governance center">CPU 作為可信驗證與治理中心</span>
+          </div>
+          <div class="metric">
+            <b data-zh="Full-Phase Probe" data-en="Full-Phase Probe">Full-Phase Probe</b>
+            <span data-zh="不洩漏演算法也能檢測黑箱行為風險" data-en="black-box behavior audit without exposing vendor algorithms">不洩漏演算法也能檢測黑箱行為風險</span>
+          </div>
         </div>
+      </aside>
+    </header>
+
+    <section class="strip" aria-label="Key metrics">
+      <div class="metric">
+        <b>21.50×</b>
+        <span data-zh="Rust memory-side frontier stage speedup" data-en="Rust memory-side frontier stage speedup">Rust memory-side frontier stage speedup</span>
+      </div>
+      <div class="metric">
+        <b>false</b>
+        <span data-zh="binary floating point used for decisions" data-en="binary floating point used for decisions">binary floating point used for decisions</span>
+      </div>
+      <div class="metric">
+        <b>true</b>
+        <span data-zh="Python / Rust selected frontier views match" data-en="Python / Rust selected frontier views match">Python / Rust selected frontier views match</span>
+      </div>
+      <div class="metric">
+        <b>false</b>
+        <span data-zh="hardware PIM execution claimed in current report" data-en="hardware PIM execution claimed in current report">hardware PIM execution claimed in current report</span>
       </div>
     </section>
 
-    <section id="projects" class="grid">
-      <div class="card">
-        <h2>Memory RAID Engine</h2>
-        <p class="mono" data-zh="以 RAID 思維重構記憶體佈局，達成零拷貝與帶寬聚合。"
-           data-en="RAID-inspired memory layout for zero-copy & bandwidth aggregation.">
-          以 RAID 思維重構記憶體佈局，達成零拷貝與帶寬聚合。
-        </p>
-        <a href="https://github.com/ixu2486/memory_raid_engine" target="_blank" rel="noopener">GitHub →</a>
+    <section id="architecture" class="section">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-zh="Architecture" data-en="Architecture">Architecture</div>
+          <h2 data-zh="三層可信計算分工" data-en="Three-layer trustworthy compute division">三層可信計算分工</h2>
+        </div>
       </div>
 
-      <div class="card">
-        <h2>GGUF Cognitive Bridge</h2>
-        <p class="mono" data-zh="離線 GGUF 與語義修復引擎耦合，提供穩定的認知殘差回饋。"
-           data-en="Couples offline GGUF with semantic repair engine for stable cognition.">
-          離線 GGUF 與語義修復引擎耦合，提供穩定的認知殘差回饋。
-        </p>
-        <a href="https://github.com/ixu2486" target="_blank" rel="noopener">Repository Index →</a>
-      </div>
+      <div class="grid-3">
+        <article class="card accent">
+          <h3 data-zh="CPU Verifier" data-en="CPU Verifier">CPU Verifier</h3>
+          <p data-zh="CPU 不與 GPU 爭奪吞吐量。CPU 負責驗證、路由、簽核與治理，是最終 commit / review / reject 的可信中心。"
+             data-en="CPU does not compete with GPU throughput. It verifies, routes, signs, and governs final commit / review / reject decisions.">
+            CPU 不與 GPU 爭奪吞吐量。CPU 負責驗證、路由、簽核與治理，是最終 commit / review / reject 的可信中心。
+          </p>
+        </article>
 
-      <div class="card">
-        <h2>Semantic-HFT-ASI</h2>
-        <p class="mono" data-zh="十層語義場 × 低延遲對沖引擎，<200ms 閉環。"
-           data-en="10-layer semantic field × low-latency hedging engine, &lt;200ms loop.">
-          十層語義場 × 低延遲對沖引擎，&lt;200ms 閉環。
-        </p>
-        <a href="https://github.com/ixu2486" target="_blank" rel="noopener">Docs →</a>
+        <article class="card accent">
+          <h3 data-zh="Memory-Side Exact Compute" data-en="Memory-Side Exact Compute">Memory-Side Exact Compute</h3>
+          <p data-zh="適合 sparse、local、reduction 的工作會被推向記憶體側。目標不是暴力 FLOPs，而是提交前保留精度完整性。"
+             data-en="Sparse, local, and reduction-friendly workloads move toward memory-side execution. The goal is precision integrity before commit, not brute-force FLOPs.">
+            適合 sparse、local、reduction 的工作會被推向記憶體側。目標不是暴力 FLOPs，而是提交前保留精度完整性。
+          </p>
+        </article>
+
+        <article class="card">
+          <h3 data-zh="GPU as Candidate Engine" data-en="GPU as Candidate Engine">GPU as Candidate Engine</h3>
+          <p data-zh="GPU 仍然適合 dense acceleration，但 GPU 輸出應被視為候選結果，而不是自我認證的真相。"
+             data-en="GPU remains valuable for dense acceleration, but its output should be treated as a candidate result, not self-certified truth.">
+            GPU 仍然適合 dense acceleration，但 GPU 輸出應被視為候選結果，而不是自我認證的真相。
+          </p>
+        </article>
       </div>
     </section>
 
-    
-<section class="card" style="margin-top:16px">
-  <h2 data-zh="創業合作與投資者資訊" data-en="Partnership & Investor Info">創業合作與投資者資訊</h2>
-  <p class="mono" data-zh="RetryIX AGI 歡迎各界對於語義運算與高效能 AI 系統有興趣的合作夥伴與投資者，共同推動下一代 AGI 架構。" data-en="RetryIX AGI welcomes partnerships and investors interested in semantic computing and high-efficiency AI systems.">
-    RetryIX AGI 歡迎各界對於語義運算與高效能 AI 系統有興趣的合作夥伴與投資者，共同推動下一代 AGI 架構。
-  </p>
-  <ul class="list">
-    <li data-zh="資金合作模式與技術授權" data-en="Funding collaboration and technical licensing">資金合作模式與技術授權</li>
-    <li data-zh="戰略投資與創業合作夥伴招募" data-en="Strategic investment & startup partnership recruitment">戰略投資與創業合作夥伴招募</li>
-    <li data-zh="聯絡窗口：ixu@retryixagi.com" data-en="Contact: ixu@retryixagi.com">聯絡窗口：ixu@retryixagi.com</li>
-  </ul>
-</section>
+    <section id="evidence" class="section">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-zh="Latest Evidence" data-en="Latest Evidence">Latest Evidence</div>
+          <h2 data-zh="NGS QC Exact Frontier Report" data-en="NGS QC Exact Frontier Report">NGS QC Exact Frontier Report</h2>
+        </div>
+      </div>
 
+      <div class="grid-2">
+        <article class="card warn">
+          <h3 data-zh="報告重點" data-en="Report Highlights">報告重點</h3>
+          <ul class="list">
+            <li data-zh="Python/Rust selected frontier views match: true" data-en="Python/Rust selected frontier views match: true">Python/Rust selected frontier views match: true</li>
+            <li data-zh="binary floating point used for decisions: false" data-en="binary floating point used for decisions: false">binary floating point used for decisions: false</li>
+            <li data-zh="rounded decimal used for decisions: false" data-en="rounded decimal used for decisions: false">rounded decimal used for decisions: false</li>
+            <li data-zh="Python exact full pipeline: 69.451 s" data-en="Python exact full pipeline: 69.451 s">Python exact full pipeline: 69.451 s</li>
+            <li data-zh="Python exact frontier stage: 83.1097 ms" data-en="Python exact frontier stage: 83.1097 ms">Python exact frontier stage: 83.1097 ms</li>
+            <li data-zh="RetryIX Rust memory-side frontier: 3.8648 ms" data-en="RetryIX Rust memory-side frontier: 3.8648 ms">RetryIX Rust memory-side frontier: 3.8648 ms</li>
+            <li data-zh="exact frontier-stage speedup: 21.50×" data-en="exact frontier-stage speedup: 21.50×">exact frontier-stage speedup: 21.50×</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="https://drive.google.com/file/d/1Gu6SRFfP3SIY0a8SJ6XpUhhhwjjv-dZB/view" target="_blank" rel="noopener" data-zh="開啟報告" data-en="Open Report">開啟報告</a>
+          </div>
+        </article>
 
-    <section id="contact" class="card" style="margin-top:16px">
-      <h2 data-zh="聯絡" data-en="Contact">聯絡</h2>
-      <p class="mono">✉️ <a href="mailto:ixu@retryix.com">ixu@retryix.com</a></p>
-      <p class="mono">🌐 <a href="https://retryixagi.com" target="_blank" rel="noopener">retryixagi.com</a></p>
+        <article class="card">
+          <h3 data-zh="邊界聲明" data-en="Boundary Statement">邊界聲明</h3>
+          <p data-zh="這是 computational NGS QC research，不是臨床主張，也不是濕實驗室驗證。此報告沒有宣稱 hardware PIM execution。"
+             data-en="This is computational NGS QC research. It is not a clinical claim and not wet-lab validation. This report does not claim hardware PIM execution.">
+            這是 computational NGS QC research，不是臨床主張，也不是濕實驗室驗證。此報告沒有宣稱 hardware PIM execution。
+          </p>
+          <div class="codebox">compiled_memory_side_path_executed = true
+hardware_pim_executed = false
+binary_float_used_for_decisions = false
+rounded_decimal_used_for_decisions = false</div>
+          <div class="tags">
+            <span class="tag">Exact Frontier</span>
+            <span class="tag">Rust</span>
+            <span class="tag">Memory-Side</span>
+            <span class="tag">NGS QC</span>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <footer class="foot">
-      <div>© <span id="y"></span> RetryIX AGI Inc</div>
-      <div class="mono" data-zh="以語義記憶體驅動的下一代智能"
-           data-en="Next-gen intelligence powered by semantic memory">
-        以語義記憢體驅動的下一代智能
+    <section id="audit" class="section">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-zh="Black-Box Audit" data-en="Black-Box Audit">Black-Box Audit</div>
+          <h2 data-zh="全相位探針審查，不洩漏底層演算法" data-en="Full-phase probe audit without exposing private algorithms">全相位探針審查，不洩漏底層演算法</h2>
+        </div>
       </div>
+
+      <div class="grid-2">
+        <article class="card accent">
+          <h3 data-zh="方法" data-en="Method">方法</h3>
+          <p data-zh="全相位空間像一個探針式索引場。審查方不要求廠商公開 ranking function、模型權重或推薦規則，而是用可重現探針觀察外部回波。"
+             data-en="The full-phase space works like probe-indexed behavior monitoring. Auditors do not need ranking functions, model weights, or recommendation rules; they measure reproducible external responses.">
+            全相位空間像一個探針式索引場。審查方不要求廠商公開 ranking function、模型權重或推薦規則，而是用可重現探針觀察外部回波。
+          </p>
+          <ul class="list">
+            <li data-zh="語言、身份、主題、情緒、時間、路徑探針" data-en="language, identity, topic, emotion, time, and path probes">語言、身份、主題、情緒、時間、路徑探針</li>
+            <li data-zh="監控 drift、asymmetry、attractor、boundary jump" data-en="monitor drift, asymmetry, attractors, and boundary jumps">監控 drift、asymmetry、attractor、boundary jump</li>
+            <li data-zh="輸出 COMMIT / NEEDS_REVIEW / ALERT / REJECT" data-en="output COMMIT / NEEDS_REVIEW / ALERT / REJECT">輸出 COMMIT / NEEDS_REVIEW / ALERT / REJECT</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 data-zh="審查缺口" data-en="Governance Gap">審查缺口</h3>
+          <p data-zh="傳統人工審查容易被主觀立場影響；平台自審又常是黑箱。RetryIX 補上中間層：系統先量測異常，人工只在量測結果上做安全方向調整。"
+             data-en="Traditional manual review can be subjective, while platform self-review is often opaque. RetryIX adds the missing middle layer: the system measures anomalies first; humans adjust safety actions based on evidence.">
+            傳統人工審查容易被主觀立場影響；平台自審又常是黑箱。RetryIX 補上中間層：系統先量測異常，人工只在量測結果上做安全方向調整。
+          </p>
+          <div class="codebox">Probe → Phase Response → Drift / Closure Check
+      → System Score → Human Safety Adjustment
+      → Final Audit Score</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-zh="Projects" data-en="Projects">Projects</div>
+          <h2 data-zh="目前公開方向" data-en="Public Directions">目前公開方向</h2>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <article class="step" data-step="01">
+          <h3>RetryIX Memory ISA</h3>
+          <p data-zh="Verified memory compute primitives for sparse lookup, local reduction, verifier routing, and exact frontier reduction."
+             data-en="Verified memory compute primitives for sparse lookup, local reduction, verifier routing, and exact frontier reduction.">
+            Verified memory compute primitives for sparse lookup, local reduction, verifier routing, and exact frontier reduction.
+          </p>
+        </article>
+        <article class="step" data-step="02">
+          <h3>Memory RAID Engine</h3>
+          <p data-zh="以記憶體佈局、快取與零拷貝方式降低資料搬運成本，作為 memory-first 系統基礎。"
+             data-en="Memory layout, cache, and zero-copy methods to reduce data movement cost as the base of memory-first systems.">
+            以記憶體佈局、快取與零拷貝方式降低資料搬運成本，作為 memory-first 系統基礎。
+          </p>
+        </article>
+        <article class="step" data-step="03">
+          <h3>Full-Phase Audit</h3>
+          <p data-zh="用探針方式監控模型與推薦系統的長期行為軌跡，檢測潛在語義偏移與安全風險。"
+             data-en="Probe-based monitoring of long-term model and recommendation behavior to detect semantic drift and safety risks.">
+            用探針方式監控模型與推薦系統的長期行為軌跡，檢測潛在語義偏移與安全風險。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="card">
+        <div class="eyebrow" data-zh="Contact" data-en="Contact">Contact</div>
+        <h2 data-zh="合作、技術審查、授權與投資討論" data-en="Collaboration, technical review, licensing, and investment discussion">合作、技術審查、授權與投資討論</h2>
+        <p class="mono">✉️ <a href="mailto:ixu@retryixagi.com">ixu@retryixagi.com</a></p>
+        <p>🌐 <a href="https://retryixagi.com" target="_blank" rel="noopener">retryixagi.com</a></p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> RetryIX AGI Inc</div>
+      <div data-zh="Memory-first evidence gates for trustworthy AI." data-en="Memory-first evidence gates for trustworthy AI.">Memory-first evidence gates for trustworthy AI.</div>
     </footer>
   </div>
 
   <script>
-    // 年份 & 雙語切換
-    document.getElementById('y').textContent = new Date().getFullYear();
-    const btn = document.getElementById('lang');
-    let en = false;
-    const swap = () => {
-      document.querySelectorAll('[data-zh]').forEach(el=>{
-        el.textContent = en ? el.dataset.zh : el.dataset.en;
+    const langButton = document.getElementById('lang');
+    const year = document.getElementById('year');
+    year.textContent = new Date().getFullYear();
+
+    let current = 'zh';
+    const applyLang = (lang) => {
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+      document.querySelectorAll('[data-zh][data-en]').forEach(el => {
+        el.textContent = lang === 'zh' ? el.dataset.zh : el.dataset.en;
       });
-      btn.textContent = en ? 'EN' : '中';
-      en = !en;
+      langButton.textContent = lang === 'zh' ? 'EN' : '中';
+      current = lang;
     };
-    btn.addEventListener('click', swap);
+
+    langButton.addEventListener('click', () => {
+      applyLang(current === 'zh' ? 'en' : 'zh');
+    });
   </script>
 </body>
 </html>
+'''
+
+path = Path("/mnt/data/index_new_retryix.html")
+path.write_text(html, encoding="utf-8")
+print(f"Created {path} ({path.stat().st_size:,} bytes)")
